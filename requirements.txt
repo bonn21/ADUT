@@ -1,0 +1,6 @@
+Flask
+opencv-python
+torch
+torchvision
+timm
+werkzeug

@@ -1,0 +1,204 @@
+/* Biến màu sắc */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --success-color: #2ecc71;
+    --background-light: #f8f9fa;
+    --background-dark: #2c3e50;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset và cài đặt chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--background-light) 0%, #e9ecef 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Webcam và layout */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.webcam-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--background-dark);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    flex: 2;
+    transition: transform 0.3s ease;
+}
+
+.webcam-container:hover {
+    transform: translateY(-5px);
+}
+
+#webcam-feed {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.prediction-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+/* Panel thông tin */
+.info-panel {
+    flex: 1;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.controls {
+    margin-bottom: 2rem;
+}
+
+.btn {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.result {
+    background: var(--background-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+#prediction-result {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.confidence-bar-container {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.confidence-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--success-color), #27ae60);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.confidence-bar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .webcam-container {
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.6rem;
+        font-size: 1rem;
+    }
+    
+    #prediction-result {
+        font-size: 1.2rem;
+    }
+    
+    .result {
+        padding: 1rem;
+    }
+}
